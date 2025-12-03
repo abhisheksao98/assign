@@ -8,8 +8,18 @@ import json
 
 
 class PhoneDatabase:
-    def __init__(self, db_path: str = "phones.db"):
-        self.db_path = db_path
+    def __init__(self, db_path: str = None):
+        # Use /tmp for serverless environments (Vercel, AWS Lambda, etc.)
+        if db_path is None:
+            import os
+            if os.path.exists("/tmp"):
+                # Serverless environment
+                self.db_path = "/tmp/phones.db"
+            else:
+                # Local development
+                self.db_path = "phones.db"
+        else:
+            self.db_path = db_path
         self.init_database()
         self.populate_database()
 

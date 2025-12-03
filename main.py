@@ -22,12 +22,20 @@ app.add_middleware(
 )
 
 # Initialize agent (with error handling)
-try:
-    agent = ShoppingAgent()
-except ValueError as e:
-    print(f"Warning: {e}")
-    print("Please set GEMINI_API_KEY in your .env file")
-    agent = None
+# Note: In serverless, initialization happens on cold start
+agent = None
+
+def get_agent():
+    """Lazy initialization of agent for serverless environments."""
+    global agent
+    if agent is None:
+        try:
+            agent = ShoppingAgent()
+        except Exception as e:
+            print(f"Warning: Agent initialization failed: {e}")
+            print("Please set GEMINI_API_KEY in environment variables")
+            agent = None
+    return agent
 
 
 class ChatRequest(BaseModel):
@@ -49,17 +57,18 @@ async def read_root():
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """Handle chat messages."""
-    if agent is None:
+    current_agent = get_agent()
+    if current_agent is None:
         raise HTTPException(
             status_code=500, 
             detail="AI agent not initialized. Please set GEMINI_API_KEY in environment variables."
         )
     
     try:
-        result = agent.handle_query(request.message)
+        result = current_agent.handle_query(request.message)
         
         # Format phones for display
-        formatted_phones = [agent.format_phone_for_display(phone) for phone in result["phones"]]
+        formatted_phones = [current_agent.format_phone_for_display(phone) for phone in result["phones"]]
         
         return ChatResponse(
             response=result["response"],
@@ -79,6 +88,9 @@ async def health():
 # Mount static files (must be after routes to avoid conflicts)
 if os.path.exists("static"):
     app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Vercel requires this export
+handler = app
 
 if __name__ == "__main__":
     import uvicorn
