@@ -2,7 +2,7 @@
 
 An AI-powered shopping assistant that helps customers discover, compare, and buy mobile phones through natural language conversations.
 
-## 🎯 Features
+##  Features
 
 - **Natural Language Queries**: Ask questions like "Best camera phone under ₹30,000?" or "Compare Pixel 8a vs OnePlus 12R"
 - **Smart Recommendations**: Get personalized phone recommendations based on budget, features, and requirements
@@ -11,7 +11,7 @@ An AI-powered shopping assistant that helps customers discover, compare, and buy
 - **Adversarial Protection**: Safely handles malicious prompts and irrelevant queries
 - **Modern UI**: Clean, responsive chat interface with product cards and comparison views
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Backend**: FastAPI (Python)
 - **AI Model**: Google Gemini Pro (via Google AI Studio)
@@ -19,12 +19,12 @@ An AI-powered shopping assistant that helps customers discover, compare, and buy
 - **Frontend**: HTML, CSS, JavaScript (vanilla)
 - **Deployment**: Compatible with Render, Railway, Vercel (serverless), or any Python hosting
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Python 3.11 or higher
 - Google Gemini API key (free tier available at [Google AI Studio](https://makersuite.google.com/app/apikey))
 
-## 🚀 Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -84,57 +84,8 @@ uvicorn main:app --reload
 
 The application will be available at `http://localhost:8000`
 
-## 🌐 Deployment
 
-### Option 1: Render (Recommended)
-
-1. Create a new account at [Render](https://render.com)
-2. Create a new "Web Service"
-3. Connect your GitHub repository
-4. Set build command: `pip install -r requirements.txt`
-5. Set start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-6. Add environment variable: `GEMINI_API_KEY` = your API key
-7. Deploy!
-
-### Option 2: Railway
-
-1. Sign up at [Railway](https://railway.app)
-2. Create a new project from GitHub
-3. Add environment variable: `GEMINI_API_KEY`
-4. Railway will auto-detect Python and deploy
-
-### Option 3: Vercel (Serverless)
-
-1. Install Vercel CLI: `npm i -g vercel`
-2. Create `vercel.json`:
-```json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "main.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "main.py"
-    }
-  ]
-}
-```
-3. Deploy: `vercel`
-
-### Option 4: Local Development with ngrok
-
-For testing locally with a public URL:
-
-```bash
-ngrok http 8000
-```
-
-## 📝 Usage Examples
+##  Usage Examples
 
 ### Query Types Supported
 
@@ -163,7 +114,7 @@ ngrok http 8000
    - "Tell me more about Pixel 8a"
    - "What are the specs of OnePlus 12R?"
 
-## 🔒 Prompt Design & Safety Strategy
+##  Prompt Design & Safety Strategy
 
 ### System Prompt Design
 
@@ -197,13 +148,13 @@ The system includes multiple layers of protection:
 
 ### Safety Features
 
-- ✅ Refuses to reveal system prompts or API keys
-- ✅ Rejects defamatory or biased requests
-- ✅ Only discusses mobile phones and related topics
-- ✅ Uses only verified database information
-- ✅ Maintains neutral, factual responses
+-  Refuses to reveal system prompts or API keys
+-  Rejects defamatory or biased requests
+-  Only discusses mobile phones and related topics
+-  Uses only verified database information
+-  Maintains neutral, factual responses
 
-## 📊 Database Schema
+##  Database Schema
 
 The SQLite database includes the following phone attributes:
 
@@ -228,7 +179,7 @@ Try these to test safety:
 
 All should be handled gracefully with appropriate refusals or redirections.
 
-## ⚠️ Known Limitations
+##  Known Limitations
 
 1. **Limited Database**: Currently includes 10 mock phones. In production, this would connect to a real product catalog API.
 
@@ -244,17 +195,6 @@ All should be handled gracefully with appropriate refusals or redirections.
 
 7. **Language Support**: Currently optimized for English queries, though it can handle some variations.
 
-## 🔮 Future Enhancements
-
-- [ ] Connect to real product catalog API
-- [ ] Add user authentication and saved searches
-- [ ] Implement purchase flow integration
-- [ ] Add product image gallery
-- [ ] Support multiple languages
-- [ ] Add voice input/output
-- [ ] Implement caching for faster responses
-- [ ] Add analytics and query logging
-- [ ] Support for more product categories
 
 ## 📄 License
 
@@ -262,15 +202,13 @@ This project is created as an assignment submission.
 
 ## 👤 Author
 
-Created as part of AI/ML Engineer Assignment.
+Abhishek Sao
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Google Gemini API for AI capabilities
 - FastAPI for the excellent web framework
 - All the open-source libraries that made this possible
 
 ---
-
-**Note**: Remember to keep your `.env` file secure and never commit it to version control. The `.gitignore` file is configured to exclude it.
 
