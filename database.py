@@ -8,8 +8,18 @@ import json
 
 
 class PhoneDatabase:
-    def __init__(self, db_path: str = "phones.db"):
-        self.db_path = db_path
+    def __init__(self, db_path: str = None):
+        # For serverless environments, use /tmp directory if available
+        if db_path is None:
+            import tempfile
+            import os
+            # Try /tmp first (works in Vercel), fallback to current directory
+            if os.path.exists("/tmp"):
+                self.db_path = "/tmp/phones.db"
+            else:
+                self.db_path = "phones.db"
+        else:
+            self.db_path = db_path
         self.init_database()
         self.populate_database()
 
