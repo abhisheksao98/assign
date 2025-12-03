@@ -13,3 +13,6 @@ ENV/
 .DS_Store
 *.log
 
+assignenv/
+*.db
+__pycache__/
