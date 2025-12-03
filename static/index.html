@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Shopping Chat Agent</title>
+    <link rel="stylesheet" href="/static/styles.css?v=2.0">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 Mobile Shopping Assistant</h1>
+            <p>Ask me about phones, compare models, or get recommendations!</p>
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Hello! I'm your mobile shopping assistant. I can help you:</p>
+                        <ul>
+                            <li>Find phones based on your budget and requirements</li>
+                            <li>Compare different models</li>
+                            <li>Explain technical features</li>
+                            <li>Make recommendations</li>
+                        </ul>
+                        <p>Try asking: "Best camera phone under ₹30,000?" or "Compare Pixel 8a vs OnePlus 12R"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    id="chatInput" 
+                    placeholder="Ask about phones, compare models, or get recommendations..."
+                    autocomplete="off"
+                >
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+
+        <div class="products-container" id="productsContainer"></div>
+    </div>
+
+    <script src="/static/script.js?v=2.0"></script>
+</body>
+</html>
+
