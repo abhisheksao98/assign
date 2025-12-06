@@ -107,7 +107,8 @@ Please provide a helpful response based on the available phone data. If the quer
 
     def extract_filters(self, query: str) -> Dict:
         """Extract filters from natural language query."""
-        query_lower = query.lower()
+        # Remove commas from numbers (e.g., "30,000" → "30000")
+        query_lower = re.sub(r'(\d),(\d)', r'\1\2', query.lower())
         filters = {}
         
         # Extract price
